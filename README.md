@@ -298,6 +298,8 @@ How can we test this solution with minimal investment?
 - Timeline:
 ```
 
+When working through first principles analyses, capturing your reasoning process is as important as the conclusion. Teams that document their decomposition steps using structured tools like [KeepRule](https://keeprule.com) can revisit and refine their thinking as new information emerges.
+
 ---
 
 ## The Socratic Method Connection
