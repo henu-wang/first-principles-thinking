@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Principles Thinking: A Complete Guide to Reasoning from Fundamentals</title>
+    <meta name="description" content="Master first principles thinking - the powerful mental model used by Aristotle, Descartes, and Elon Musk. Learn to break down complex problems into fundamental truths.">
+    <meta name="keywords" content="first principles thinking, mental models, reasoning, problem solving, critical thinking, keeprule">
+    <meta property="og:title" content="First Principles Thinking: A Complete Guide">
+    <meta property="og:description" content="Learn to reason from fundamental truths with examples from business, science, and engineering.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://henu-wang.github.io/first-principles-thinking/">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2b6cb0;
+            --accent: #ed8936;
+            --accent-dark: #dd6b20;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.7;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white; padding: 80px 0 60px; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .hero .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto 30px; }
+        .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 50px; font-size: 0.9rem; }
+        .nav-bar {
+            background: white; border-bottom: 1px solid var(--border); padding: 16px 0;
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .nav-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-brand { font-weight: 700; font-size: 1.1rem; color: var(--primary); text-decoration: none; }
+        .section { padding: 60px 0; }
+        .section-title { font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+        .section-desc { font-size: 1.1rem; color: var(--text-light); margin-bottom: 40px; max-width: 800px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
+        .card {
+            background: var(--card-bg); border-radius: 12px; padding: 32px;
+            box-shadow: var(--shadow); border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .card-icon {
+            width: 56px; height: 56px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;
+        }
+        .card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+        .card p { color: var(--text-light); font-size: 0.95rem; }
+        .card ul { margin-top: 12px; padding-left: 20px; color: var(--text-light); }
+        .card ul li { margin-bottom: 6px; font-size: 0.95rem; }
+        .quote-block {
+            background: linear-gradient(135deg, #ebf4ff 0%, #e9d8fd 100%);
+            border-left: 5px solid var(--primary); padding: 28px 32px; border-radius: 0 12px 12px 0; margin: 40px 0;
+        }
+        .quote-block blockquote { font-size: 1.2rem; font-style: italic; color: var(--primary); margin-bottom: 8px; }
+        .quote-block cite { font-size: 0.9rem; color: var(--text-light); font-style: normal; }
+        .steps { counter-reset: step-counter; }
+        .step { display: flex; gap: 24px; margin-bottom: 36px; align-items: flex-start; }
+        .step-number {
+            flex-shrink: 0; width: 48px; height: 48px; background: var(--accent); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem;
+        }
+        .step-content h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+        .step-content p { color: var(--text-light); }
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 30px 0; background: white;
+            border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);
+        }
+        .comparison-table th { background: var(--primary); color: white; padding: 16px 20px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 14px 20px; border-bottom: 1px solid var(--border); }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:nth-child(even) { background: #f8fafc; }
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white; padding: 60px 40px; text-align: center; border-radius: 16px; margin: 40px 0;
+        }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; margin-bottom: 28px; font-size: 1.1rem; }
+        .btn {
+            display: inline-block; background: var(--accent); color: white; padding: 14px 32px;
+            border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: background 0.2s;
+        }
+        .btn:hover { background: var(--accent-dark); }
+        .btn-outline { background: transparent; border: 2px solid white; margin-left: 12px; }
+        .btn-outline:hover { background: rgba(255,255,255,0.15); }
+        .thinker-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+        .thinker-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); }
+        .thinker-header { background: linear-gradient(135deg, var(--primary) 0%, #4a5568 100%); color: white; padding: 24px; }
+        .thinker-header h3 { font-size: 1.3rem; margin-bottom: 4px; }
+        .thinker-header span { opacity: 0.8; font-size: 0.9rem; }
+        .thinker-body { padding: 24px; }
+        .thinker-body p { color: var(--text-light); margin-bottom: 12px; font-size: 0.95rem; }
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .resource-link {
+            display: flex; align-items: center; gap: 16px; background: white; padding: 20px;
+            border-radius: 10px; text-decoration: none; color: var(--text); border: 1px solid var(--border); transition: all 0.2s;
+        }
+        .resource-link:hover { border-color: var(--primary-light); box-shadow: var(--shadow); }
+        .resource-link .r-icon {
+            width: 44px; height: 44px; background: #ebf4ff; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .resource-link .r-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+        .resource-link .r-text p { font-size: 0.8rem; color: var(--text-light); }
+        footer { background: var(--primary); color: white; padding: 48px 0 24px; margin-top: 60px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 36px; }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 16px; opacity: 0.9; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; margin-bottom: 8px; }
+        .footer-col a:hover { color: white; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 24px; text-align: center; font-size: 0.85rem; opacity: 0.7; }
+        .highlight-box { background: #fffaf0; border: 1px solid #fbd38d; border-radius: 10px; padding: 24px; margin: 24px 0; }
+        .highlight-box h4 { color: var(--accent-dark); margin-bottom: 8px; }
+        .tag { display: inline-block; background: #ebf4ff; color: var(--primary-light); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
+        .tag-accent { background: #fefcbf; color: #975a16; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 50px 0 40px; }
+            .section { padding: 40px 0; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="container">
+            <a href="https://keeprule.com" class="nav-brand">KeepRule</a>
+            <div class="nav-links">
+                <a href="#origins">Origins</a>
+                <a href="#framework">Framework</a>
+                <a href="#thinkers">Great Thinkers</a>
+                <a href="#examples">Examples</a>
+                <a href="#practice">Practice</a>
+                <a href="https://keeprule.com" title="KeepRule - Decision Frameworks">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <span class="badge">Mental Model Deep Dive</span>
+            <h1>First Principles Thinking</h1>
+            <p class="subtitle">The most powerful mental model for breaking through conventional wisdom. Learn how history's greatest thinkers solved impossible problems by reasoning from fundamental truths.</p>
+            <a href="https://keeprule.com/scenarios/first-principles" class="btn">Explore on KeepRule</a>
+            <a href="#framework" class="btn btn-outline">Read the Guide</a>
+        </div>
+    </section>
+
+    <section class="section" id="origins">
+        <div class="container">
+            <h2 class="section-title">What Is First Principles Thinking?</h2>
+            <p class="section-desc">First principles thinking is the practice of actively questioning every assumption about a given problem, then creating new knowledge and solutions from scratch. Rather than reasoning by analogy, you break things down to fundamental truths and build up from there.</p>
+            <div class="quote-block">
+                <blockquote>"In every systematic inquiry where there are first principles, the knowledge of the objects of that inquiry lies in the knowledge of those first principles."</blockquote>
+                <cite>-- Aristotle, Physics, Book I</cite>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">&#x1F3DB;</div>
+                    <h3>Ancient Roots</h3>
+                    <p>Aristotle defined a first principle as "the first basis from which a thing is known." In his Metaphysics, he described it as the most fundamental proposition that cannot be deduced from any other. This approach formed the bedrock of Western philosophy and scientific inquiry for over two millennia.</p>
+                    <ul>
+                        <li>Aristotelian logic and deduction</li>
+                        <li>The foundation of empirical science</li>
+                        <li>Separating assumptions from axioms</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#x1F9E0;</div>
+                    <h3>Method of Doubt</h3>
+                    <p>Rene Descartes advanced first principles through his "Method of Doubt" -- systematically doubting everything that could possibly be doubted until arriving at indubitable truths. His famous "Cogito, ergo sum" is a first principle derived from this method of radical skepticism.</p>
+                    <ul>
+                        <li>Systematic skepticism as methodology</li>
+                        <li>Rebuilding knowledge from certainty</li>
+                        <li>Eliminating inherited assumptions</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#x1F680;</div>
+                    <h3>Modern Application</h3>
+                    <p>Today, innovators like Elon Musk use first principles to challenge assumptions. He questioned why rockets cost $65M by breaking down raw material costs (roughly 2% of the price), revealing massive inefficiencies. As noted in <a href="https://keeprule.com" style="color:var(--primary-light)">decision frameworks on KeepRule</a>, this approach is universally applicable.</p>
+                    <ul>
+                        <li>From space travel to battery technology</li>
+                        <li>Disrupting entrenched industries</li>
+                        <li>10x improvement vs. incremental gains</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Reasoning by Analogy vs. First Principles</h2>
+            <p class="section-desc">Most people reason by analogy: they copy what others do with modifications. First principles thinkers strip away assumptions and reconstruct from the ground up.</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr><th>Dimension</th><th>Reasoning by Analogy</th><th>First Principles Thinking</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Starting Point</strong></td><td>What exists, what others have done</td><td>Fundamental truths and physical laws</td></tr>
+                    <tr><td><strong>Process</strong></td><td>Copy and modify existing solutions</td><td>Decompose, question, rebuild</td></tr>
+                    <tr><td><strong>Innovation Potential</strong></td><td>Incremental (10-20% improvement)</td><td>Transformational (10x improvement)</td></tr>
+                    <tr><td><strong>Cognitive Effort</strong></td><td>Low -- follows established patterns</td><td>High -- requires deep analysis</td></tr>
+                    <tr><td><strong>Risk</strong></td><td>Low -- proven approaches</td><td>Higher -- uncharted territory</td></tr>
+                    <tr><td><strong>When to Use</strong></td><td>Routine decisions, time pressure</td><td>High-stakes, novel problems</td></tr>
+                    <tr><td><strong>Example</strong></td><td>"Others charge $65K, so we should too"</td><td>"Raw materials cost 2%. Why not build for less?"</td></tr>
+                </tbody>
+            </table>
+            <div class="highlight-box">
+                <h4>When to Choose Each Approach</h4>
+                <p>First principles thinking is most valuable for novel problems where existing solutions are clearly suboptimal. For routine decisions, analogy-based reasoning is effective and faster. The <a href="https://keeprule.com/scenarios/mental-models" style="color:var(--accent-dark)">KeepRule mental models library</a> helps determine which approach fits your situation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="framework">
+        <div class="container">
+            <h2 class="section-title">The Five-Step Framework</h2>
+            <p class="section-desc">Follow this structured process to apply first principles thinking to any problem. Synthesized from Aristotle, Descartes, and modern practitioners.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Identify and Define the Problem</h4>
+                        <p>Clearly articulate what you are solving. Write it in precise language. Ask: What exactly is the outcome I want? What constraints exist? What does success look like? This process of <a href="https://keeprule.com/scenarios/problem-definition" style="color:var(--primary-light)">structured problem definition</a> is fundamental to clear thinking.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>List All Assumptions</h4>
+                        <p>Write down every assumption: cost, time, physics, behavior, market conditions, organizational constraints. Be exhaustive. Challenge yourself: "What am I taking for granted?" Many breakthroughs come from questioning assumptions everyone considers obvious.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Question Each Assumption</h4>
+                        <p>For every assumption ask: "Is this actually true? Can I prove it? What if the opposite were true?" Use the Socratic method. Separate physical constraints (laws of physics) from artificial ones (regulations, conventions, habits). Many "impossible" problems become solvable when you realize the constraint was artificial.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Identify Fundamental Truths</h4>
+                        <p>After stripping away questionable assumptions, you are left with fundamental truths -- the first principles. In physics: laws of thermodynamics. In business: unit economics. In <a href="https://keeprule.com" style="color:var(--primary-light)">investment decision-making</a>: cash flow fundamentals and margin of safety.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Build Up New Solutions</h4>
+                        <p>Using only verified first principles, construct new solutions from scratch. Do not reference existing solutions during this phase. Then compare your first-principles solution with existing approaches. The gap represents untapped opportunity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;" id="thinkers">
+        <div class="container">
+            <h2 class="section-title">Masters of First Principles</h2>
+            <p class="section-desc">Throughout history, the greatest breakthroughs came from those who dared to question conventional wisdom and reason from fundamentals.</p>
+            <div class="thinker-grid">
+                <div class="thinker-card">
+                    <div class="thinker-header"><h3>Aristotle (384-322 BCE)</h3><span>Philosopher &amp; Scientist</span></div>
+                    <div class="thinker-body">
+                        <p>The originator of "first principles" in Western philosophy. He proposed that understanding any subject requires identifying its most basic elements -- foundational truths that cannot be deduced from anything else.</p>
+                        <p>His approach through systematic observation and logical deduction laid the groundwork for the scientific method. Every branch of Western science traces its methodology back to Aristotle.</p>
+                        <div><span class="tag">Philosophy</span><span class="tag">Logic</span><span class="tag">Science</span></div>
+                    </div>
+                </div>
+                <div class="thinker-card">
+                    <div class="thinker-header"><h3>Rene Descartes (1596-1650)</h3><span>Philosopher &amp; Mathematician</span></div>
+                    <div class="thinker-body">
+                        <p>His "Meditations on First Philosophy" introduced the method of radical doubt -- discarding any belief that could possibly be false. Only what survives this scrutiny qualifies as a first principle.</p>
+                        <p>His approach produced not only "I think, therefore I am" but also the Cartesian coordinate system and analytic geometry -- unifying algebra and geometry in a way that seemed impossible to contemporaries.</p>
+                        <div><span class="tag">Doubt</span><span class="tag">Mathematics</span><span class="tag">Rationalism</span></div>
+                    </div>
+                </div>
+                <div class="thinker-card">
+                    <div class="thinker-header"><h3>Elon Musk (1971-)</h3><span>Entrepreneur &amp; Engineer</span></div>
+                    <div class="thinker-body">
+                        <p>When told rocket launches cost $65M, Musk asked: "What are the raw material costs?" Answer: roughly 2% of the price. This gap between material costs and market price revealed a massive opportunity that became SpaceX.</p>
+                        <p>Applied the same thinking to EV batteries, boring tunnels, and solar energy. Each time, first principles revealed existing solutions were orders of magnitude more expensive than physics required.</p>
+                        <div><span class="tag">SpaceX</span><span class="tag">Tesla</span><span class="tag">Engineering</span></div>
+                    </div>
+                </div>
+                <div class="thinker-card">
+                    <div class="thinker-header"><h3>Richard Feynman (1918-1988)</h3><span>Physicist &amp; Nobel Laureate</span></div>
+                    <div class="thinker-body">
+                        <p>Feynman insisted on deriving results himself rather than memorizing formulas. His "Feynman Technique" -- explaining concepts in simple language -- is essentially a first principles exercise.</p>
+                        <p>When investigating the Challenger disaster, he went straight to fundamentals: dropping an O-ring in ice water on live TV, demonstrating the root cause in seconds. Learn more about this approach at <a href="https://keeprule.com" style="color:var(--primary-light)">KeepRule</a>.</p>
+                        <div><span class="tag">Physics</span><span class="tag">Teaching</span><span class="tag">Simplicity</span></div>
+                    </div>
+                </div>
+                <div class="thinker-card">
+                    <div class="thinker-header"><h3>Johannes Gutenberg (c.1400-1468)</h3><span>Inventor &amp; Craftsman</span></div>
+                    <div class="thinker-body">
+                        <p>Gutenberg did not invent any single component. He broke down the problem of mass-producing text into first principles: movable type, adhering ink, and a pressing mechanism.</p>
+                        <p>By combining existing technologies (wine press, oil-based ink, metal alloy type) guided by fundamental requirements, he created one of history's most transformative inventions through combinatorial innovation.</p>
+                        <div><span class="tag">Innovation</span><span class="tag">Printing</span><span class="tag">Combination</span></div>
+                    </div>
+                </div>
+                <div class="thinker-card">
+                    <div class="thinker-header"><h3>Warren Buffett (1930-)</h3><span>Investor &amp; Business Thinker</span></div>
+                    <div class="thinker-body">
+                        <p>While others follow market trends, Buffett asks: "What is this business actually worth based on fundamentals?" His concept of intrinsic value is a first principle of investing.</p>
+                        <p>His "circle of competence" and "margin of safety" cut through market noise. Explore Buffett's <a href="https://keeprule.com" style="color:var(--primary-light)">investment principles on KeepRule</a> for detailed analysis of these foundational concepts.</p>
+                        <div><span class="tag">Investing</span><span class="tag">Value</span><span class="tag tag-accent">KeepRule Featured</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="examples">
+        <div class="container">
+            <h2 class="section-title">Real-World Examples by Domain</h2>
+            <p class="section-desc">First principles thinking applies across every field. Detailed examples from business, science, and engineering.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Business: Southwest Airlines</h3>
+                    <span class="tag tag-accent">Business</span>
+                    <p style="margin-top:12px">When the airline industry assumed you needed hub-and-spoke routing, assigned seating, and meals, Southwest asked: "What do passengers fundamentally need?" Answer: to get from A to B safely, affordably, and on time. Stripping away everything else created the low-cost carrier revolution.</p>
+                    <ul><li>First principle: Transportation from A to B</li><li>Eliminated: Assigned seats, meals, hub routing</li><li>Result: 47 consecutive years of profitability</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Science: CRISPR Gene Editing</h3>
+                    <span class="tag">Science</span>
+                    <p style="margin-top:12px">Doudna and Charpentier reasoned from the principle that DNA is a sequence of nucleotides that can be cut and rewritten. Rather than working within existing gene therapy limitations, they asked: "What is the simplest way to edit a specific DNA sequence?" The answer was CRISPR -- a natural bacterial defense mechanism repurposed as a precision tool.</p>
+                    <ul><li>First principle: DNA is editable chemistry</li><li>Questioned: Need for complex viral vectors</li><li>Result: Nobel Prize, revolution in medicine</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Engineering: Tesla Battery Packs</h3>
+                    <span class="tag">Engineering</span>
+                    <p style="margin-top:12px">In 2006, battery packs cost $600/kWh. Musk applied first principles: "What do the raw materials cost on commodity markets?" Roughly $80/kWh. The gap represented manufacturing inefficiency, not material reality. Today batteries approach that theoretical floor, enabling the EV revolution.</p>
+                    <ul><li>First principle: Material costs set the floor</li><li>Questioned: $600/kWh as inevitable</li><li>Result: Battery costs dropped 90% in 15 years</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Investing: Value Investing</h3>
+                    <span class="tag tag-accent">Finance</span>
+                    <p style="margin-top:12px">Graham and Buffett built value investing on first principles: a stock is a share of a business worth the discounted sum of future cash flows. This cuts through speculation and herd behavior. The <a href="https://keeprule.com/scenarios/margin-of-safety" style="color:var(--primary-light)">margin of safety principle</a> applies first principles directly to investing decisions.</p>
+                    <ul><li>First principle: Intrinsic value = future cash flows</li><li>Questioned: Market price = true value</li><li>Result: Decades of outperformance</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Architecture: Passive House Design</h3>
+                    <span class="tag">Architecture</span>
+                    <p style="margin-top:12px">Rather than accepting that buildings need large heating systems, passive house designers asked: "What does a building fundamentally need to maintain temperature?" Answer: insulation, airtightness, heat recovery, and solar orientation. Optimizing these principles reduces heating energy by 90%.</p>
+                    <ul><li>First principle: Heat flows from hot to cold</li><li>Questioned: Need for large HVAC systems</li><li>Result: 90% energy reduction</li></ul>
+                </div>
+                <div class="card">
+                    <h3>Education: Khan Academy</h3>
+                    <span class="tag">Education</span>
+                    <p style="margin-top:12px">Sal Khan asked: "What does learning fundamentally require?" Clear explanations, practice problems, and immediate feedback -- not expensive campuses or fixed schedules. Rebuilding education from these principles made world-class education free to anyone with internet access.</p>
+                    <ul><li>First principle: Learning = explanation + practice</li><li>Questioned: Need for physical classrooms</li><li>Result: 150+ million learners worldwide</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;" id="practice">
+        <div class="container">
+            <h2 class="section-title">How to Practice First Principles Thinking</h2>
+            <p class="section-desc">Like any skill, first principles thinking improves with deliberate practice. Concrete techniques for daily use.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>The "Five Whys" Technique</h3>
+                    <p>Developed at Toyota, this drills down to root causes. Ask "Why?" five times in succession; each answer becomes the next subject. By the fifth iteration, you typically reach a fundamental truth invisible at the surface. Works for <a href="https://keeprule.com/scenarios/root-cause-analysis" style="color:var(--primary-light)">business problems</a> and personal decisions alike.</p>
+                </div>
+                <div class="card">
+                    <h3>The Blank Page Exercise</h3>
+                    <p>Write your problem at the top of a blank page. Without referencing existing solutions, list only fundamental requirements. What must be true for a solution to work? What are the physics, economics, human needs? Build a solution from these alone. Compare with existing approaches to find gaps and opportunities.</p>
+                </div>
+                <div class="card">
+                    <h3>Assumption Auditing</h3>
+                    <p>Create two columns: "Assumptions" and "Verified Truths." List everything you believe about the situation. For each assumption ask: "How do I know? What evidence supports it?" Move only well-evidenced items to "Verified." You will be surprised how many "facts" are unexamined assumptions waiting to be challenged.</p>
+                </div>
+                <div class="card">
+                    <h3>Cross-Domain Learning</h3>
+                    <p>Study solutions from completely different fields. How does biology solve distribution? How does physics handle optimization? Understanding first principles across domains builds a toolkit of fundamental patterns applicable anywhere. <a href="https://keeprule.com" style="color:var(--primary-light)">KeepRule's decision frameworks</a> catalog these cross-domain principles for practical use.</p>
+                </div>
+            </div>
+            <div class="quote-block">
+                <blockquote>"The person who says he knows what he thinks but cannot express it usually does not know what he thinks."</blockquote>
+                <cite>-- Mortimer Adler</cite>
+            </div>
+            <div class="highlight-box">
+                <h4>Common Pitfalls to Avoid</h4>
+                <p><strong>Analysis Paralysis:</strong> Reserve first principles thinking for high-impact problems where conventional approaches are clearly failing.</p>
+                <p style="margin-top:8px"><strong>Ignoring Valid Precedent:</strong> Sometimes existing solutions are good because they have been refined over time. First principles should complement experience, not replace it.</p>
+                <p style="margin-top:8px"><strong>Overconfidence:</strong> Deriving something from first principles does not guarantee correctness. Validate conclusions empirically before committing resources.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Apply First Principles to Your Decisions</h2>
+                <p>KeepRule provides structured frameworks for applying mental models like first principles thinking to investment and life decisions.</p>
+                <a href="https://keeprule.com" class="btn">Visit KeepRule</a>
+                <a href="https://keeprule.com/scenarios/first-principles" class="btn btn-outline">First Principles Scenarios</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Related Mental Models &amp; Resources</h2>
+            <p class="section-desc">First principles thinking becomes even more powerful when combined with complementary mental models.</p>
+            <div class="resource-grid">
+                <a href="https://keeprule.com/scenarios/inversion" class="resource-link">
+                    <div class="r-icon">&#x1F504;</div>
+                    <div class="r-text"><h4>Inversion Thinking</h4><p>Solve problems by thinking backwards</p></div>
+                </a>
+                <a href="https://keeprule.com/scenarios/circle-of-competence" class="resource-link">
+                    <div class="r-icon">&#x1F3AF;</div>
+                    <div class="r-text"><h4>Circle of Competence</h4><p>Know what you know and what you do not</p></div>
+                </a>
+                <a href="https://keeprule.com/scenarios/margin-of-safety" class="resource-link">
+                    <div class="r-icon">&#x1F6E1;</div>
+                    <div class="r-text"><h4>Margin of Safety</h4><p>Build buffers for uncertainty</p></div>
+                </a>
+                <a href="https://keeprule.com/scenarios/second-order-effects" class="resource-link">
+                    <div class="r-icon">&#x1F30A;</div>
+                    <div class="r-text"><h4>Second-Order Effects</h4><p>Think beyond immediate consequences</p></div>
+                </a>
+                <a href="https://keeprule.com/scenarios/mental-models" class="resource-link">
+                    <div class="r-icon">&#x1F4DA;</div>
+                    <div class="r-text"><h4>Mental Models Library</h4><p>Browse all decision frameworks</p></div>
+                </a>
+                <a href="https://keeprule.com/scenarios/probabilistic-thinking" class="resource-link">
+                    <div class="r-icon">&#x1F3B2;</div>
+                    <div class="r-text"><h4>Probabilistic Thinking</h4><p>Make decisions under uncertainty</p></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About This Guide</h4>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; line-height:1.6;">A comprehensive guide to first principles thinking, part of the KeepRule mental models education series. Making powerful thinking tools accessible to everyone.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>KeepRule Resources</h4>
+                    <a href="https://keeprule.com">Home</a>
+                    <a href="https://keeprule.com/scenarios/first-principles">First Principles Scenarios</a>
+                    <a href="https://keeprule.com/scenarios/mental-models">Mental Models Library</a>
+                    <a href="https://keeprule.com/scenarios/margin-of-safety">Margin of Safety</a>
+                </div>
+                <div class="footer-col">
+                    <h4>More Thinking Tools</h4>
+                    <a href="https://keeprule.com/scenarios/inversion">Inversion Thinking</a>
+                    <a href="https://keeprule.com/scenarios/circle-of-competence">Circle of Competence</a>
+                    <a href="https://keeprule.com/scenarios/second-order-effects">Second-Order Effects</a>
+                    <a href="https://keeprule.com/scenarios/probabilistic-thinking">Probabilistic Thinking</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Decision Making</h4>
+                    <a href="https://keeprule.com">KeepRule Platform</a>
+                    <a href="https://keeprule.com/scenarios/decision-frameworks">Decision Frameworks</a>
+                    <a href="https://keeprule.com/scenarios/cognitive-biases">Cognitive Biases</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 First Principles Thinking Guide. Part of the <a href="https://keeprule.com" style="color:rgba(255,255,255,0.9)">KeepRule</a> educational resource network.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
